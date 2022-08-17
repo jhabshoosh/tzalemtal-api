@@ -9,8 +9,6 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-answer = "A man fishing"
-
 @app.route('/')
 @cross_origin()
 def hello():
@@ -21,7 +19,7 @@ def hello():
 @cross_origin()
 def handle_score():
     guess = request.get_json(force=True).get('guess')
-    score = calculate_score(answer, guess)
+    score = calculate_score(os.environ.get('ANSWER'), guess)
     return {
         "guess": guess,
         "score": score
