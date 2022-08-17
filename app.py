@@ -1,19 +1,24 @@
 from flask import Flask, request, render_template
+from flask_cors import CORS, cross_origin
 import spacy
 import os
 
 nlp = spacy.load("en_core_web_md")
 
 app = Flask(__name__)
-    
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 answer = "A man fishing"
 
 @app.route('/')
+@cross_origin()
 def hello():
   return "Hello World!"
 
 
 @app.post('/score')
+@cross_origin()
 def handle_score():
     guess = request.get_json(force=True).get('guess')
     score = calculate_score(answer, guess)
