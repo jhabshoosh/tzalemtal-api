@@ -2,7 +2,7 @@ from flask import Flask, request, render_template
 import spacy
 import os
 
-nlp = spacy.load("en_core_web_lg")
+nlp = spacy.load("en_core_web_md")
 
 app = Flask(__name__)
     
