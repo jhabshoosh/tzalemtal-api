@@ -8,6 +8,10 @@ app = Flask(__name__)
     
 answer = "A man fishing"
 
+@app.route('/')
+def hello():
+  return "Hello World!"
+
 
 @app.post('/score')
 def handle_score():
